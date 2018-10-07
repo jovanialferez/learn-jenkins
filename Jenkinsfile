@@ -1,5 +1,13 @@
 node('master') {
-    stage('demo') {
-        echo "Hello world!"
+    stage('checkout') {
+        checkout scm
+    }
+
+    stage('build') {
+        sh 'composer install'
+    }
+
+    stage('test') {
+        sh './vendor/bin/phpunit tests'
     }
 }
